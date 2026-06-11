@@ -45,6 +45,11 @@ docker compose up --build
 
 ### Local development
 
+**Prerequisites**
+- Python 3.11+
+- Node.js 18+
+- npm 9+
+
 **Backend**
 
 ```bash
