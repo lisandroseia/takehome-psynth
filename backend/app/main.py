@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import router
+
+from app.documents.router import router as documents_router
 
 app = FastAPI(title="Psynth Document Review Queue")
 
@@ -16,4 +17,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(router)
+app.include_router(documents_router)

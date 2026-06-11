@@ -11,12 +11,17 @@ import type {
 import { apiRequest } from './client'
 
 function buildDocumentsPath(params?: GetDocumentsParams): string {
-  if (!params?.status) {
-    return '/documents'
-  }
-
-  const searchParams = new URLSearchParams({ status: params.status })
-  return `/documents?${searchParams.toString()}`
+  const searchParams = new URLSearchParams()
+  if (params?.status) searchParams.set('status', params.status)
+  if (params?.priority) searchParams.set('priority', params.priority)
+  if (params?.category) searchParams.set('category', params.category)
+  if (params?.q) searchParams.set('q', params.q)
+  if (params?.sort_by) searchParams.set('sort_by', params.sort_by)
+  if (params?.sort_order) searchParams.set('sort_order', params.sort_order)
+  if (params?.page != null) searchParams.set('page', String(params.page))
+  if (params?.page_size != null) searchParams.set('page_size', String(params.page_size))
+  const qs = searchParams.toString()
+  return qs ? `/documents?${qs}` : '/documents'
 }
 
 export function getDocuments(params?: GetDocumentsParams): Promise<GetDocumentsResponse> {

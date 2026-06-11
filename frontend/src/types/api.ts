@@ -1,10 +1,25 @@
-import type { Document, DocumentCreate, DocumentPatch, DocumentStatus } from './document'
+import type { Document, DocumentCategory, DocumentCreate, DocumentPatch, DocumentPriority, DocumentSortBy, DocumentStatus, SortOrder } from './document'
 
 export interface GetDocumentsParams {
   status?: DocumentStatus
+  priority?: DocumentPriority
+  category?: DocumentCategory
+  q?: string
+  page?: number
+  page_size?: number
+  sort_by?: DocumentSortBy
+  sort_order?: SortOrder
 }
 
-export type GetDocumentsResponse = Document[]
+export interface PaginatedResponse {
+  items: Document[]
+  total: number
+  page: number
+  page_size: number | null
+  total_pages: number
+}
+
+export type GetDocumentsResponse = PaginatedResponse
 
 export type GetDocumentResponse = Document
 

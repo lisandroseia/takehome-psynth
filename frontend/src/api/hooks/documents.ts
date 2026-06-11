@@ -5,6 +5,7 @@ import {
   type UseMutationOptions,
   type UseQueryOptions,
 } from '@tanstack/react-query'
+import { toast } from 'sonner'
 import type {
   CreateDocumentRequest,
   CreateDocumentResponse,
@@ -75,7 +76,12 @@ export function useCreateDocument(
     mutationFn: createDocument,
     onSuccess: (data, variables, onMutateResult, context) => {
       queryClient.invalidateQueries({ queryKey: documentKeys.lists() })
+      toast.success('Document created successfully.')
       options?.onSuccess?.(data, variables, onMutateResult, context)
+    },
+    onError: (error, variables, context) => {
+      toast.error(error.message || 'Failed to create document.')
+      options?.onError?.(error, variables, context)
     },
   })
 }
@@ -98,7 +104,12 @@ export function useUpdateDocument(
     onSuccess: (data, variables, onMutateResult, context) => {
       queryClient.setQueryData<Document>(documentKeys.detail(data.id), data)
       queryClient.invalidateQueries({ queryKey: documentKeys.lists() })
+      toast.success('Status updated.')
       options?.onSuccess?.(data, variables, onMutateResult, context)
+    },
+    onError: (error, variables, context) => {
+      toast.error(error.message || 'Failed to update status.')
+      options?.onError?.(error, variables, context)
     },
   })
 }
@@ -117,7 +128,12 @@ export function useDeleteDocument(
     onSuccess: (data, id, onMutateResult, context) => {
       queryClient.removeQueries({ queryKey: documentKeys.detail(id) })
       queryClient.invalidateQueries({ queryKey: documentKeys.lists() })
+      toast.success('Document deleted.')
       options?.onSuccess?.(data, id, onMutateResult, context)
+    },
+    onError: (error, variables, context) => {
+      toast.error(error.message || 'Failed to delete document.')
+      options?.onError?.(error, variables, context)
     },
   })
 }
