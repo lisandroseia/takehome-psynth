@@ -27,7 +27,7 @@ def get_documents(
     sort_by: DocumentSortBy = DocumentSortBy.created_at,
     sort_order: SortOrder = SortOrder.desc,
     page: int = Query(default=1, ge=1),
-    page_size: Optional[int] = Query(default=10, ge=1),
+    page_size: Optional[int] = Query(default=10, ge=1, le=100),
 ):
     return service.list_documents(status, priority, category, q, sort_by, sort_order, page, page_size)
 

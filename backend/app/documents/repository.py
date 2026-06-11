@@ -9,8 +9,13 @@ _store: dict[str, Document] = {}
 
 
 def _load() -> None:
+    if not _DATA_FILE.exists():
+        raise FileNotFoundError(f"Mock data file not found: {_DATA_FILE}")
     with open(_DATA_FILE, "r") as f:
-        raw = json.load(f)
+        try:
+            raw = json.load(f)
+        except json.JSONDecodeError as e:
+            raise ValueError(f"Invalid JSON in mock data file: {e}") from e
     _store.update({doc["id"]: Document(**doc) for doc in raw})
 
 

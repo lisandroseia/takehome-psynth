@@ -32,17 +32,19 @@ def list_documents(
     page: int = 1,
     page_size: Optional[int] = 10,
 ) -> PaginatedResponse:
-    docs = repository.get_all()
+    stream = iter(repository.get_all())
 
     if status:
-        docs = [doc for doc in docs if doc.status == status]
+        stream = (doc for doc in stream if doc.status == status)
     if priority:
-        docs = [doc for doc in docs if doc.priority == priority]
+        stream = (doc for doc in stream if doc.priority == priority)
     if category:
-        docs = [doc for doc in docs if doc.category == category]
+        stream = (doc for doc in stream if doc.category == category)
     if q:
         term = q.lower()
-        docs = [doc for doc in docs if term in doc.title.lower() or term in doc.submitter_name.lower()]
+        stream = (doc for doc in stream if term in doc.title.lower() or term in doc.submitter_name.lower())
+
+    docs = list(stream)
 
     reverse = sort_order == SortOrder.desc
     if sort_by == DocumentSortBy.priority:
