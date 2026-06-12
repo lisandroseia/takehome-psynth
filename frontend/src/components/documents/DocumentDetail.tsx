@@ -39,7 +39,6 @@ export function DocumentDetail({ documentId, onClose }: DocumentDetailProps) {
             >
               Document Details
             </h2>
-            <p className="mt-1 text-sm text-gray-600">{documentId}</p>
           </div>
           <button
             type="button"
