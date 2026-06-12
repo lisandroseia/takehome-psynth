@@ -192,4 +192,4 @@ All AI-generated code was reviewed before acceptance: reading diffs carefully, c
 
 ## Video Walkthrough
 
-_Link will be added after recording._
+[Watch the video walkthrough](https://www.loom.com/share/a55da0583b7e492886893caf16bf3b59)
