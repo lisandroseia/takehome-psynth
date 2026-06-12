@@ -43,7 +43,7 @@ export function DocumentDetail({ documentId, onClose }: DocumentDetailProps) {
           <button
             type="button"
             onClick={onClose}
-            className="rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="cursor-pointer rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
           >
             Close
           </button>

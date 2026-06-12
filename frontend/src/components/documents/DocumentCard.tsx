@@ -61,7 +61,7 @@ export function DocumentCard({ document, onView }: DocumentCardProps) {
           <button
             type="button"
             onClick={() => onView(document.id)}
-            className="rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="cursor-pointer rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
           >
             View
           </button>
@@ -69,7 +69,7 @@ export function DocumentCard({ document, onView }: DocumentCardProps) {
             type="button"
             onClick={() => setConfirmOpen(true)}
             disabled={deleteDocument.isPending}
-            className="rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-red-700 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60"
+            className="cursor-pointer rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-red-700 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60"
           >
             Delete
           </button>

@@ -60,7 +60,7 @@ export function DocumentList({
         <button
           type="button"
           onClick={() => refetch()}
-          className="mt-4 rounded-md border border-red-300 bg-white px-3 py-1.5 text-sm font-medium text-red-800 hover:bg-red-100"
+          className="mt-4 cursor-pointer rounded-md border border-red-300 bg-white px-3 py-1.5 text-sm font-medium text-red-800 hover:bg-red-100"
         >
           Retry
         </button>

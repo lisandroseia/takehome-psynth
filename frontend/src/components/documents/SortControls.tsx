@@ -22,7 +22,7 @@ export function SortControls({ sortBy, sortOrder, onChange }: SortControlsProps)
       <select
         value={sortBy}
         onChange={(e) => onChange(e.target.value as DocumentSortBy, sortOrder)}
-        className="rounded-md border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-700 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+        className="cursor-pointer rounded-md border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-700 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
       >
         {SORT_BY_OPTIONS.map((option) => (
           <option key={option} value={option}>
@@ -34,7 +34,7 @@ export function SortControls({ sortBy, sortOrder, onChange }: SortControlsProps)
         type="button"
         onClick={() => onChange(sortBy, sortOrder === 'asc' ? 'desc' : 'asc')}
         title={sortOrder === 'asc' ? 'Ascending — click for descending' : 'Descending — click for ascending'}
-        className="rounded-md border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-700 hover:bg-gray-50 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+        className="cursor-pointer rounded-md border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-700 hover:bg-gray-50 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
       >
         {sortOrder === 'asc' ? '↑ Asc' : '↓ Desc'}
       </button>

@@ -30,7 +30,7 @@ export function StatusUpdateSelect({
           data: { status: nextStatus },
         })
       }}
-      className="rounded-md border border-gray-300 bg-white px-2 py-1 text-sm text-gray-900 disabled:cursor-not-allowed disabled:bg-gray-100"
+      className="cursor-pointer rounded-md border border-gray-300 bg-white px-2 py-1 text-sm text-gray-900 disabled:cursor-not-allowed disabled:bg-gray-100"
       aria-label="Update document status"
     >
       {DOCUMENT_STATUSES.map((status) => (
