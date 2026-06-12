@@ -50,6 +50,10 @@ export function DocumentCard({ document, onView }: DocumentCardProps) {
                 {document.category}
               </span>
             </span>
+            <span className="flex items-center gap-1 text-xs text-gray-500">
+              By:
+              <span className="font-medium text-gray-700">{document.submitter_name}</span>
+            </span>
           </div>
         </div>
 
