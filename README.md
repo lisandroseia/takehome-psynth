@@ -153,13 +153,13 @@ Status, priority, and category are all defined as `str` enums in Pydantic. This 
 **Claude Code** was used to implement specific connected features — filters, pagination, sorting, the API client, and React Query hooks — where changes needed to be consistent across multiple files simultaneously.
 
 ### Accepted Suggestions
-- Layered backend architecture (router / service / repository separation)
-- TanStack Query with a structured query key factory
 - TypeScript types in `types/document.ts` aligned 1:1 with the Pydantic models
 - Generator chain for single-pass filtering in the service layer
 - Docker and Docker Compose configuration
 
 ### Modified Suggestions
+- **Layered backend architecture** — Claude's initial proposal was a basic flat structure. After the developer pushed for a more production-realistic approach, the layered router / service / repository separation was designed collaboratively and implemented with AI assistance.
+- **TanStack Query** — the developer identified TanStack Query as the right tool; Cursor had generated a basic `useEffect`-based implementation which was then rewritten to use React Query correctly, including the query key factory and cache invalidation strategy.
 - Several React components were restructured after generation — AI-generated components sometimes over-abstracted or missed prop types; these were rewritten to match the actual data flow.
 - The initial API client lacked structured error typing; `ApiError` with a typed `body` field was added manually.
 
