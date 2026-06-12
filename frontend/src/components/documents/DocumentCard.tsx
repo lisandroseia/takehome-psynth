@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { useDeleteDocument } from '../../api/hooks/documents'
 import { PRIORITY_LABELS, STATUS_LABELS } from '../../lib/documents'
 import type { Document } from '../../types'
+import { ConfirmModal } from '../ConfirmModal'
 
 interface DocumentCardProps {
   document: Document
@@ -22,54 +24,65 @@ const STATUS_COLORS = {
 
 export function DocumentCard({ document, onView }: DocumentCardProps) {
   const deleteDocument = useDeleteDocument()
+  const [confirmOpen, setConfirmOpen] = useState(false)
 
   return (
-    <article className="flex items-center justify-between gap-4 rounded-lg border border-gray-200 bg-white px-4 py-3">
-      <div className="min-w-0 flex-1 text-left">
-        <p className="truncate text-sm font-medium text-gray-900">{document.title}</p>
-        <div className="mt-1.5 flex flex-wrap gap-2">
-          <span className="flex items-center gap-1 text-xs text-gray-500">
-            Status:
-            <span className={`rounded px-1.5 py-0.5 font-medium ${STATUS_COLORS[document.status]}`}>
-              {STATUS_LABELS[document.status]}
+    <>
+      <article className="flex items-center justify-between gap-4 rounded-lg border border-gray-200 bg-white px-4 py-3">
+        <div className="min-w-0 flex-1 text-left">
+          <p className="truncate text-sm font-medium text-gray-900">{document.title}</p>
+          <div className="mt-1.5 flex flex-wrap gap-2">
+            <span className="flex items-center gap-1 text-xs text-gray-500">
+              Status:
+              <span className={`rounded px-1.5 py-0.5 font-medium ${STATUS_COLORS[document.status]}`}>
+                {STATUS_LABELS[document.status]}
+              </span>
             </span>
-          </span>
-          <span className="flex items-center gap-1 text-xs text-gray-500">
-            Priority:
-            <span className={`rounded px-1.5 py-0.5 font-medium ${PRIORITY_COLORS[document.priority]}`}>
-              {PRIORITY_LABELS[document.priority]}
+            <span className="flex items-center gap-1 text-xs text-gray-500">
+              Priority:
+              <span className={`rounded px-1.5 py-0.5 font-medium ${PRIORITY_COLORS[document.priority]}`}>
+                {PRIORITY_LABELS[document.priority]}
+              </span>
             </span>
-          </span>
-          <span className="flex items-center gap-1 text-xs text-gray-500">
-            Category:
-            <span className="rounded bg-gray-100 px-1.5 py-0.5 font-medium text-gray-600">
-              {document.category}
+            <span className="flex items-center gap-1 text-xs text-gray-500">
+              Category:
+              <span className="rounded bg-gray-100 px-1.5 py-0.5 font-medium text-gray-600">
+                {document.category}
+              </span>
             </span>
-          </span>
+          </div>
         </div>
-      </div>
 
-      <div className="flex shrink-0 gap-2">
-        <button
-          type="button"
-          onClick={() => onView(document.id)}
-          className="rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        >
-          View
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            if (window.confirm(`Delete "${document.title}"? This cannot be undone.`)) {
-              deleteDocument.mutate(document.id)
-            }
-          }}
-          disabled={deleteDocument.isPending}
-          className="rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-red-700 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          Delete
-        </button>
-      </div>
-    </article>
+        <div className="flex shrink-0 gap-2">
+          <button
+            type="button"
+            onClick={() => onView(document.id)}
+            className="rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+          >
+            View
+          </button>
+          <button
+            type="button"
+            onClick={() => setConfirmOpen(true)}
+            disabled={deleteDocument.isPending}
+            className="rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-red-700 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            Delete
+          </button>
+        </div>
+      </article>
+
+      <ConfirmModal
+        isOpen={confirmOpen}
+        title="Delete document"
+        description={`"${document.title}" will be permanently removed. This cannot be undone.`}
+        confirmLabel="Delete"
+        onConfirm={() => {
+          setConfirmOpen(false)
+          deleteDocument.mutate(document.id)
+        }}
+        onCancel={() => setConfirmOpen(false)}
+      />
+    </>
   )
 }
