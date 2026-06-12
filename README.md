@@ -34,7 +34,8 @@ Users can view, filter, search, create, update, and delete documents in a review
 ### Docker (recommended)
 
 **Prerequisites**
-- Docker Desktop (includes Docker Compose) — https://www.docker.com/products/docker-desktop
+- **macOS / Windows**: Docker Desktop (includes Docker Compose) — https://www.docker.com/products/docker-desktop
+- **Linux / WSL2**: Docker Engine + Docker Compose plugin — https://docs.docker.com/engine/install/
 
 ```bash
 docker compose up --build
