@@ -1,4 +1,4 @@
-import { useDocument } from '../../api'
+import { useDocument } from '../../api/hooks/documents'
 import {
   formatDocumentDate,
   PRIORITY_LABELS,

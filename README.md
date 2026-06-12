@@ -166,6 +166,7 @@ Status, priority, and category are all defined as `str` enums in Pydantic. This 
 ### Rejected Suggestions
 - An early suggestion to use `useReducer` for filter state in `App.tsx` was rejected as unnecessary complexity — individual `useState` calls are clearer and sufficient for this scope.
 - A suggestion to add optimistic updates for delete was rejected to keep the implementation honest; a refetch after mutation is simpler and less error-prone without tests to back it.
+- A barrel `api/index.ts` that re-exported everything from all API modules was removed. Each component imports directly from its specific module (e.g. `api/hooks/documents`). Barrel exports hide where things actually live and create implicit coupling between features — removing them keeps imports explicit and the module boundary clear as the project grows.
 
 ### Validation Process
 All AI-generated code was reviewed before acceptance: reading diffs carefully, checking type correctness in the IDE, and manually testing the affected flows in the browser. Backend changes were also tested against the FastAPI `/docs` interface to verify request/response shapes.

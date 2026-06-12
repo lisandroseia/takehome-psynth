@@ -1,4 +1,4 @@
-import { useDeleteDocument } from '../../api'
+import { useDeleteDocument } from '../../api/hooks/documents'
 import { PRIORITY_LABELS, STATUS_LABELS } from '../../lib/documents'
 import type { Document } from '../../types'
 

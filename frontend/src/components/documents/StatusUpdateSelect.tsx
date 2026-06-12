@@ -1,4 +1,4 @@
-import { useUpdateDocument } from '../../api'
+import { useUpdateDocument } from '../../api/hooks/documents'
 import { DOCUMENT_STATUSES, STATUS_LABELS } from '../../lib/documents'
 import type { DocumentStatus } from '../../types'
 

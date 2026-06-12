@@ -1,5 +1,5 @@
 import { type FormEvent, useState } from 'react'
-import { useCreateDocument } from '../../api'
+import { useCreateDocument } from '../../api/hooks/documents'
 import { DOCUMENT_CATEGORIES, DOCUMENT_PRIORITIES, PRIORITY_LABELS } from '../../lib/documents'
 import type { DocumentCategory, DocumentCreate, DocumentPriority } from '../../types'
 

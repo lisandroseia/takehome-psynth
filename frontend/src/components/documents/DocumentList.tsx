@@ -1,4 +1,4 @@
-import { useDocuments } from '../../api'
+import { useDocuments } from '../../api/hooks/documents'
 import type { DocumentCategory, DocumentPriority, DocumentSortBy, DocumentStatus, SortOrder } from '../../types'
 import { DocumentCard } from './DocumentCard'
 import { Pagination } from './Pagination'
